@@ -12,3 +12,7 @@ pygame.display.set_caption("Pong")
 # Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+
+# Paddle and ball
+paddle_width, paddle_height = 15, 100
+ball_size = 15
