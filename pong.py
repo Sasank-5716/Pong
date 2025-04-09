@@ -16,3 +16,9 @@ WHITE = (255, 255, 255)
 # Paddle and ball
 paddle_width, paddle_height = 15, 100
 ball_size = 15
+
+# Paddle A
+paddle_a = pygame.Rect(50, HEIGHT // 2 - paddle_height // 2, paddle_width, paddle_height)
+
+# Paddle B
+paddle_b = pygame.Rect(WIDTH - 50 - paddle_width, HEIGHT // 2 - paddle_height // 2, paddle_width, paddle_height)
