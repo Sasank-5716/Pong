@@ -22,3 +22,6 @@ paddle_a = pygame.Rect(50, HEIGHT // 2 - paddle_height // 2, paddle_width, paddl
 
 # Paddle B
 paddle_b = pygame.Rect(WIDTH - 50 - paddle_width, HEIGHT // 2 - paddle_height // 2, paddle_width, paddle_height)
+
+# Ball
+ball = pygame.Rect(WIDTH // 2 - ball_size // 2, HEIGHT // 2 - ball_size // 2, ball_size, ball_size)
