@@ -73,3 +73,17 @@ while True:
         score_a += 1
         ball.center = (WIDTH // 2, HEIGHT // 2)
         ball_speed_x *= -1
+
+    # Drawing
+    screen.fill(BLACK)
+    pygame.draw.rect(screen, WHITE, paddle_a)
+    pygame.draw.rect(screen, WHITE, paddle_b)
+    pygame.draw.ellipse(screen, WHITE, ball)
+    pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
+    
+    # Score display
+    score_text = font.render(f"{score_a} - {score_b}", True, WHITE)
+    screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 20))
+    
+    pygame.display.flip()
+    clock.tick(60)
