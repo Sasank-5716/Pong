@@ -63,3 +63,13 @@ while True:
     # Ball collision with paddles
     if ball.colliderect(paddle_a) or ball.colliderect(paddle_b):
         ball_speed_x *= -1
+
+    # Scoring
+    if ball.left <= 0:
+        score_b += 1
+        ball.center = (WIDTH // 2, HEIGHT // 2)
+        ball_speed_x *= -1
+    if ball.right >= WIDTH:
+        score_a += 1
+        ball.center = (WIDTH // 2, HEIGHT // 2)
+        ball_speed_x *= -1
