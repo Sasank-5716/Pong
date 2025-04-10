@@ -33,3 +33,21 @@ ball_speed_x, ball_speed_y = 5, 5
 # Scores
 score_a, score_b = 0, 0
 font = pygame.font.Font(None, 36)
+
+# Game loop
+clock = pygame.time.Clock()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    # Paddle movement
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w] and paddle_a.top > 0:
+        paddle_a.y -= paddle_speed
+    if keys[pygame.K_s] and paddle_a.bottom < HEIGHT:
+        paddle_a.y += paddle_speed
+    if keys[pygame.K_UP] and paddle_b.top > 0:
+        paddle_b.y -= paddle_speed
+    if keys[pygame.K_DOWN] and paddle_b.bottom < HEIGHT:
+        paddle_b.y += paddle_speed
