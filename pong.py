@@ -25,3 +25,11 @@ paddle_b = pygame.Rect(WIDTH - 50 - paddle_width, HEIGHT // 2 - paddle_height //
 
 # Ball
 ball = pygame.Rect(WIDTH // 2 - ball_size // 2, HEIGHT // 2 - ball_size // 2, ball_size, ball_size)
+
+# Speeds
+paddle_speed = 7
+ball_speed_x, ball_speed_y = 5, 5
+
+# Scores
+score_a, score_b = 0, 0
+font = pygame.font.Font(None, 36)
