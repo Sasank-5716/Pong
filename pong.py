@@ -70,49 +70,57 @@ while True:
     if game_state == "start":
         show_controls()
     elif game_state == "playing":
-    # Paddle movement
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w] and paddle_a.top > 0:
-        paddle_a.y -= paddle_speed
-    if keys[pygame.K_s] and paddle_a.bottom < HEIGHT:
-        paddle_a.y += paddle_speed
-    if keys[pygame.K_UP] and paddle_b.top > 0:
-        paddle_b.y -= paddle_speed
-    if keys[pygame.K_DOWN] and paddle_b.bottom < HEIGHT:
-        paddle_b.y += paddle_speed
+        # Paddle movement
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w] and paddle_a.top > 0:
+            paddle_a.y -= paddle_speed
+        if keys[pygame.K_s] and paddle_a.bottom < HEIGHT:
+            paddle_a.y += paddle_speed
+        if keys[pygame.K_UP] and paddle_b.top > 0:
+            paddle_b.y -= paddle_speed
+        if keys[pygame.K_DOWN] and paddle_b.bottom < HEIGHT:
+            paddle_b.y += paddle_speed
 
-    # Ball movement
-    ball.x += ball_speed_x
-    ball.y += ball_speed_y
+        # Ball movement
+        ball.x += ball_speed_x
+        ball.y += ball_speed_y
     
-    # Ball collision with top and bottom
-    if ball.top <= 0 or ball.bottom >= HEIGHT:
-        ball_speed_y *= -1
+        # Ball collision with top and bottom
+        if ball.top <= 0 or ball.bottom >= HEIGHT:
+            ball_speed_y *= -1
     
-    # Ball collision with paddles
-    if ball.colliderect(paddle_a) or ball.colliderect(paddle_b):
-        ball_speed_x *= -1
+        # Ball collision with paddles
+        if ball.colliderect(paddle_a) or ball.colliderect(paddle_b):
+            ball_speed_x *= -1
 
-    # Scoring
-    if ball.left <= 0:
-        score_b += 1
-        ball.center = (WIDTH // 2, HEIGHT // 2)
-        ball_speed_x *= -1
-    if ball.right >= WIDTH:
-        score_a += 1
-        ball.center = (WIDTH // 2, HEIGHT // 2)
-        ball_speed_x *= -1
+        # Scoring
+        if ball.left <= 0:
+            score_b += 1
+            ball.center = (WIDTH // 2, HEIGHT // 2)
+            ball_speed_x *= -1
+        if ball.right >= WIDTH:
+            score_a += 1
+            ball.center = (WIDTH // 2, HEIGHT // 2)
+            ball_speed_x *= -1
 
-    # Drawing
-    screen.fill(BLACK)
-    pygame.draw.rect(screen, WHITE, paddle_a)
-    pygame.draw.rect(screen, WHITE, paddle_b)
-    pygame.draw.ellipse(screen, WHITE, ball)
-    pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
+        # NEW: Check win condition
+        if score_a >= winning_score:
+            game_state = "game_over"
+            winner = "Player 1"
+        elif score_b >= winning_score:
+            game_state = "game_over"
+            winner = "Player 2"
+            
+        # Drawing
+        screen.fill(BLACK)
+        pygame.draw.rect(screen, WHITE, paddle_a)
+        pygame.draw.rect(screen, WHITE, paddle_b)
+        pygame.draw.ellipse(screen, WHITE, ball)
+        pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
     
-    # Score display
-    score_text = font.render(f"{score_a} - {score_b}", True, WHITE)
-    screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 20))
+        # Score display
+        score_text = font.render(f"{score_a} - {score_b}", True, WHITE)
+        screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 20))
     
     pygame.display.flip()
     clock.tick(60)
