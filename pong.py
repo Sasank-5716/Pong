@@ -58,6 +58,18 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:  # NEW: ESC to exit
+                pygame.quit()
+                sys.exit()
+            if event.key == pygame.K_SPACE and game_state == "start":  # NEW: Start game
+                game_state = "playing"
+    
+    # Game state management
+    if game_state == "start":
+        show_controls()
+    elif game_state == "playing":
     # Paddle movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] and paddle_a.top > 0:
