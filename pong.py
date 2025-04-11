@@ -110,7 +110,7 @@ while True:
         elif score_b >= winning_score:
             game_state = "game_over"
             winner = "Player 2"
-            
+
         # Drawing
         screen.fill(BLACK)
         pygame.draw.rect(screen, WHITE, paddle_a)
@@ -122,5 +122,19 @@ while True:
         score_text = font.render(f"{score_a} - {score_b}", True, WHITE)
         screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 20))
     
+    elif game_state == "game_over":  # NEW: Game over screen
+        screen.fill(BLACK)
+        win_text = font.render(f"{winner} wins! Final Score: {score_a}-{score_b}", True, WHITE)
+        restart = font.render("Press SPACE to play again", True, WHITE)
+        screen.blit(win_text, (WIDTH//2 - win_text.get_width()//2, HEIGHT//2 - 50))
+        screen.blit(restart, (WIDTH//2 - restart.get_width()//2, HEIGHT//2 + 50))
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_SPACE]:
+            # Reset game
+            score_a, score_b = 0, 0
+            ball.center = (WIDTH//2, HEIGHT//2)
+            game_state = "playing"
+
     pygame.display.flip()
     clock.tick(60)
