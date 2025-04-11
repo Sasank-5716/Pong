@@ -32,7 +32,24 @@ ball_speed_x, ball_speed_y = 5, 5
 
 # Scores
 score_a, score_b = 0, 0
+winning_score = 10
 font = pygame.font.Font(None, 36)
+game_state = "start"  
+winner = ""
+
+def show_controls():
+    screen.fill(BLACK)
+    title = font.render("PONG GAME", True, WHITE)
+    controls1 = font.render("Player 1: W (Up) S (Down)", True, WHITE)
+    controls2 = font.render("Player 2: ↑ (Up) ↓ (Down)", True, WHITE)
+    start_info = font.render("Press SPACE to Start", True, WHITE)
+    exit_info = font.render("Press ESC to Exit", True, WHITE)
+    
+    screen.blit(title, (WIDTH//2 - title.get_width()//2, 100))
+    screen.blit(controls1, (WIDTH//2 - controls1.get_width()//2, 200))
+    screen.blit(controls2, (WIDTH//2 - controls2.get_width()//2, 250))
+    screen.blit(start_info, (WIDTH//2 - start_info.get_width()//2, 350))
+    screen.blit(exit_info, (WIDTH//2 - exit_info.get_width()//2, 400))
 
 # Game loop
 clock = pygame.time.Clock()
